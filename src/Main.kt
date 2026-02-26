@@ -2,5 +2,7 @@
 // click the <icon src="AllIcons.Actions.Execute"/> icon in the gutter.
 fun main() {
     //ProductsList()
-    revenue()
+    //revenue()
+    //viewStatus()
+    status()
 }
