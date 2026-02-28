@@ -2,10 +2,17 @@ package coffee
 
 import kotlin.math.min
 
+var water: Int = 400
+var milk: Int = 540
+var coffeeBeans: Int = 120
+var cups: Int = 9
+var money: Int = 550
 
 fun Coffee() {
     //numberOfCoffees()
-    supplyData()
+    //supplyData()
+    printSupplies(water, milk, coffeeBeans, cups, money)
+    action()
 }
 
 fun welcome() {
@@ -89,4 +96,195 @@ fun supplyData() {
         }
         maximumCups < coffeeCupsCount -> println("No, I can make only $maximumCups cups of coffee")
     }
+}
+
+/*
+Part 1:
+Current state :
+Water - 400 ml
+Milk - 540 ml
+Coffe beans - 120 gms
+Number of disposable cups - 9
+
+Print the current state of the machine with the existing supplies.
+
+Part 2:
+Provide three options to the user: 1) Buy, 2) Fill, 3) Take
+1) Buy
+Provide 3 additional options - a) - espresso, b) - latte, c) - cappuccino:
+
+Check if there are sufficient supplies to prepare coffee
+
+a) Espresso
+Water-  250 ml
+Milk - 0 ml
+Coffee beans - 16 g
+
+b) Latte
+Water - 350 ml
+Milk - 75 ml
+Coffee beans- 20 g
+
+c) Cappuccino
+Water - 200 ml
+Milk - 100 ml
+Coffee beans- 12 g
+
+After choosing the option, print the state after consuming the supplies based on the coffee type
+
+2) Fill
+You need to take input from the user
+Water ?
+1000
+Milk ?
+500
+Coffee beans ?
+300
+Disposable cups ?
+10
+
+Print the state after adding the given supplies
+
+3) Take
+Display and deduct the money that is available
+Print the final state
+
+Pattern / Trend
+
+Part 1:
+The state of supplies need to be printed for every transaction. The common supplies are:
+Water, Milk, Coffee Beans, Disposable cups.
+
+Part 2:
+Buy
+For every coffee option selected to Buy, the supplies needs to be calculated. The supplies are:
+Water, Milk, Coffee Beans, Disposable cups.
+
+Fill
+For filling, you need to add the supplies. The supplies are:
+Water, Milk, Coffee Beans, Disposable cups. Then you need to print this data including the balance money.
+
+Take
+For taking the money, you need to check for the current money balance.
+
+
+Abstraction
+Important details:
+Supply stock
+Water
+Milk
+Coffee beans
+Disposable cups
+Balance amount
+
+Based on this, you can perform the following operations:
+Buy, Fill, Take
+
+Algorithm:
+Write a function which has input parameters:
+Water, Milk, Coffee Beans, Disposable cups
+
+This function should print the supplies based on the above data.
+Print function
+
+You need to take input from the users : Action (Buy, Fill, Take)
+Buy
+Again check with the user for the types to buy? (Espresso, Latte, Cappuccino)
+
+Write a function which has input parameters:
+Water, Milk, Coffee Beans, Disposable cups
+
+This function should calculate the supplies based on the current supplies and the supplies
+required based on user selection.
+
+If Espresso is chosen, then calculate or measure the supplies and based on this process further.
+
+Fill
+You need to add supplies when Fill is selected
+
+Take
+You need to deduct money from the existing balance
+
+*/
+
+fun printSupplies(water: Int, milk: Int, coffeeBeans: Int, cups: Int, money: Int) {
+    println("The coffee machine has:")
+    println("$water ml of water\n" +
+            "$milk ml of milk\n" +
+            "$coffeeBeans g of coffee beans\n" +
+            "$cups disposable cups\n" +
+            "\$$money of money")
+}
+
+fun action() {
+    println("\nWrite action (buy, fill, take):")
+    val inputAction = readln()
+    when(inputAction) {
+        "buy" -> {
+            println("What do you want to buy? 1 - espresso, 2 - latte, 3 - cappuccino: ")
+            val coffeeType = readln().toInt()
+            calculateSupplies(coffeeType)
+        }
+        "fill" -> {
+            fillSupplies()
+        }
+        "take" -> {
+            withdrawMoney(money)
+        }
+    }
+}
+
+fun calculateSupplies(coffeeType: Int) {
+    when (coffeeType) {
+        1 -> {
+            water -= 250
+            milk -= 0
+            coffeeBeans -= 16
+            cups -= 1
+            money += 4
+            printSupplies(water, milk, coffeeBeans, cups, money)
+        }
+        2 -> {
+            water -= 350
+            milk -= 75
+            coffeeBeans -= 20
+            cups -= 1
+            money += 7
+            printSupplies(water, milk, coffeeBeans, cups, money)
+        }
+        3 -> {
+            water -= 200
+            milk -= 100
+            coffeeBeans -= 12
+            cups -= 1
+            money += 6
+            printSupplies(water, milk, coffeeBeans, cups, money)
+        }
+    }
+}
+
+fun fillSupplies() {
+    println("Write how many ml of water you want to add:")
+    val water = readln().toInt()
+    println("Write how many ml of milk you want to add: ")
+    val milk = readln().toInt()
+    println("Write how many grams of coffee beans you want to add: ")
+    val coffeeBeans = readln().toInt()
+    println("Write how many disposable cups you want to add: ")
+    val disposableCups = readln().toInt()
+    addSupplies(water, milk, coffeeBeans, disposableCups)
+}
+
+fun addSupplies(x: Int, y: Int, z: Int, a: Int) {
+    water += x
+    milk += y
+    coffeeBeans += z
+    cups += a
+    printSupplies(water, milk, coffeeBeans, cups, money)
+}
+
+fun withdrawMoney(balance: Int) {
+    val debit = money - balance
+    println("I gave you $$balance")
+    printSupplies(water, milk, coffeeBeans, cups, debit)
 }
