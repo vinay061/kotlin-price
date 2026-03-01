@@ -1,3 +1,5 @@
+import coffee.CoffeeMachine
+
 fun main() {
     val coffee = CoffeeMachine(400, 540, 120, 9, 550)
     coffee.printItems(
