@@ -1,28 +1,28 @@
 package coffee
 
-private var waterSolution: Int = 400
-private var lait: Int = 540
-private var cafe: Int = 120
-private var container: Int = 9
-private var argent: Int = 550
+private var waterSolutionB: Int = 400
+private var laitB: Int = 540
+private var cafeB: Int = 120
+private var containerB: Int = 9
+private var argentB: Int = 550
 
-fun startTest() {
+fun startTestB() {
     while(true) {
         println("Write action (buy, fill, take, remaining, exit):")
         val inputAction = readln()
         when (inputAction) {
             "buy" -> buyCoffeeB()
             "fill" -> fillSupplyB()
-            "take" -> takeCashB(argent)
+            "take" -> takeCashB(argentB)
             "remaining" -> {
-                displayStock(waterSolution, lait, cafe, container, argent)
+                displayStockB(waterSolutionB, laitB, cafeB, containerB, argentB)
             }
             "exit" -> return
         }
     }
 }
 
-fun buyCoffee() {
+fun buyCoffeeB() {
     println("What do you want to buy? 1 - espresso, 2 - latte, 3 - cappuccino, back - to main menu:")
     val input = readln()
     when (input) {
@@ -33,35 +33,35 @@ fun buyCoffee() {
     }
 }
 
-fun makeCafe(waterStock: Int, milkStock: Int, beanStock: Int, cost:Int) {
+fun makeCafeB(waterStock: Int, milkStock: Int, beanStock: Int, cost:Int) {
     when {
-        waterSolution < waterStock -> {
+        waterSolutionB < waterStock -> {
             println("Sorry, not enough water!")
             return
         }
-        lait < milkStock -> {
+        laitB < milkStock -> {
             println("Sorry, not enough milk!")
             return
         }
-        cafe < beanStock -> {
+        cafeB < beanStock -> {
             println("Sorry, not enough coffee beans!")
             return
         }
-        container < 1 -> {
+        containerB < 1 -> {
             println("Sorry, not enough cups!")
             return
         }
     }
 
     println("I have enough resources, making you a coffee!")
-    waterSolution -= waterStock
-    lait -= milkStock
-    cafe -= beanStock
-    container -= 1
-    argent += cost
+    waterSolutionB -= waterStock
+    laitB -= milkStock
+    cafeB -= beanStock
+    containerB -= 1
+    argentB += cost
 }
 
-fun fillSupply() {
+fun fillSupplyB() {
     println("Write how many ml of water you want to add:")
     val waterAddition = readln().toInt()
     println("Write how many ml of milk you want to add: ")
@@ -70,17 +70,17 @@ fun fillSupply() {
     val beansAddition = readln().toInt()
     println("Write how many disposable cups you want to add: ")
     val cupsAddition = readln().toInt()
-    supplyAddition(waterAddition, milkAddition, beansAddition, cupsAddition)
+    supplyAdditionB(waterAddition, milkAddition, beansAddition, cupsAddition)
 }
 
-private fun supplyAddition(x: Int, y: Int, z: Int, a: Int) {
-    waterSolution += x
-    lait += y
-    cafe += z
-    container += a
+private fun supplyAdditionB(x: Int, y: Int, z: Int, a: Int) {
+    waterSolutionB += x
+    laitB += y
+    cafeB += z
+    containerB += a
 }
 
-private fun displayStock(waterStock: Int, milkStock: Int, beanStock: Int, cupsStock: Int, cashStock: Int) {
+private fun displayStockB(waterStock: Int, milkStock: Int, beanStock: Int, cupsStock: Int, cashStock: Int) {
     println("The coffee machine has:")
     println("$waterStock ml of water\n" +
             "$milkStock ml of milk\n" +
@@ -89,7 +89,8 @@ private fun displayStock(waterStock: Int, milkStock: Int, beanStock: Int, cupsSt
             "\$$cashStock of money\n")
 }
 
-fun takeCash(balance: Int) {
-    argent = 0
+fun takeCashB(balance: Int) {
+    argentB = 0
     println("I gave you $$balance\n")
 }
+
