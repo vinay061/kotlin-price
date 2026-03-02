@@ -1,8 +1,17 @@
-import coffee.CoffeeMachine
+import coffee.CoffeeMachineB
 import coffee.CoffeeMaker
-import coffee.startTest
+import coffee.FilterCoffee
+import coffee.startTestB
 
 fun main() {
-    val coffeeMaker = CoffeeMaker(400, 540, 120, 9, 550)
-    coffeeMaker.start()
+    val filterCoffee = FilterCoffee()
+
+    while (true) {
+        if(filterCoffee.isWaitingAction()) {
+            println("Write action (buy, fill, take, remaining, exit):")
+        }
+        val input = readln()
+        if(input == "exit") return
+        filterCoffee.process(input)
+    }
 }
