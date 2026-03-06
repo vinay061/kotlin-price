@@ -37,7 +37,7 @@ fun inputString() {
 
 }
 
-fun printGrid(newChar: MutableList<Char>) {
+private fun printGrid(newChar: MutableList<Char>) {
     println("---------")
     for (i in newChar.indices step 3) {
         println("| ${newChar[i]} ${newChar[i + 1]} ${newChar[i + 2]} |")

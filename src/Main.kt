@@ -4,8 +4,9 @@ import coffee.FilterCoffee
 import coffee.startTestB
 import tictactoe.inputString
 import tictactoe.playingField
+import tictactoe.userInput
 
 fun main() {
     //playingField()
-    inputString()
+    userInput()
 }
