@@ -41,6 +41,7 @@ fun checkResult(chars: List<Char>): String? {
 
     for (line in lines) {
         val values = line.map { chars[it] }
+        print(values)
         if(values.all { it == 'X' }) xWins = true
         if(values.all { it == 'O' }) oWins = true
     }
