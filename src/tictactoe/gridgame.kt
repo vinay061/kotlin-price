@@ -30,7 +30,6 @@ private fun gameGridDisplay(newChar: MutableList<MutableList<Char>>) {
 }
 
 private fun getCoordinates(newChar: MutableList<MutableList<Char>>) {
-
     while (true) {
         val inputCell = readln()
         val listCell = inputCell.split(' ')
